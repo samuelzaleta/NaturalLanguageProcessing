@@ -1,5 +1,4 @@
 import nltk
-#Cargando tu propio Corpus
 
 
 
@@ -98,7 +97,25 @@ print(palabras[1:20]) #palabras
 sents = gutenberg.sents( "burgess-busterbrown.txt" )
 print(sents[1:20]) #sentencias
 ----
-
+#Cargando tu propio Corpus
+**el corpus debe estar en una carpeta solo, en .txt utf8
+Ejemplo 1 PlaintextCorpusReader
+from nltk.corpus import PlaintextCorpusReader
+corpus_root = '/usr/share/dict' [1]
+wordlists = PlaintextCorpusReader(corpus_root, '.*') [2]
+wordlists.fileids()
+Ejemplo 2 BracketParseCorpusReader
+corpus_root = r"C:\corpora\penntreebank\parsed\mrg\wsj" [1]
+file_pattern = r".*/wsj_.*\.mrg" [2]
+ptb = BracketParseCorpusReader(corpus_root, file_pattern)
+ptb.fileids()
+----
+**Condiciones y eventos
+Una distribución de frecuencia cuenta eventos observables, como la aparición de palabras en un texto. 
+Una distribución de frecuencia condicional necesita emparejar cada evento con una condición. 
+Entonces, en lugar de procesar una secuencia de palabras [1], tenemos que procesar una secuencia de pares [2]:
+text = [ 'The' , 'Fulton' , 'County' , 'Grand' , 'Jury' , 'said' , ...][1]
+pares = [( 'noticias' , 'El' ), ( 'noticias' , 'Fulton' ), ( 'noticias' , 'Condado' ), ...][2]
 ----
 fileids()	the files of the corpus
 fileids([categories])	the files of the corpus corresponding to these categories
@@ -118,6 +135,7 @@ encoding(fileid)	the encoding of the file (if known)
 open(fileid)	open a stream for reading the given corpus file
 root	if the path to the root of locally installed corpus
 readme()	the contents of the README file of the corpus
+---
 ---
 '''
 
