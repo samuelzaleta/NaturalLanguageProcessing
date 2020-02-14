@@ -123,30 +123,4 @@ long_words = [w for w in V if len(w) > 15] #recorra todas las palabras que no te
 n =sorted(long_words)  #ordenalas
 print(n)
 '''
-#---------- tarea
-'''
-a =sum(len(w) for w in text1)
-print(a)
-a = sorted([w for w in set(text5) if w.startswith('C') or w.startswith('c')])
-print(a)
 
-cantidadPalabras =len(text3) # te da la cantidad de palabras
-print('Cantidad de palabras ', cantidadPalabras)
-vocabulario1 = len(set(text3)) #la cantidad de vocabulario
-print('Cantidad de palabras distintas ', vocabulario1)
-print('Lista del vocabulario alfa numerico ',  sorted(set(text3)))
-text = text3.generate()
-tokens = [t for t in text.split()]
-freq = nltk.FreqDist(tokens)
-for key,val in freq.items():
-    print(str(key) + ':' + str(val))
-text2.dispersion_plot(["Elinor", "Marianne", "Edward", "Willoughby"])
-V = set(text3)
-long_words = [w for w in V if len(w) == 4]
-print(sorted(long_words))
-D = text3
-vocab = [w for w in D if len(w) == 4]
-fdist1 = FreqDist(vocab)
-vocabulary = fdist1.most_common()
-print(vocabulary)
-'''
