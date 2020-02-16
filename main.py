@@ -9,8 +9,8 @@ def tratamiento_html(text):
     text = soup.get_text()  #obtiene el texto
     raw = re.sub('\[[^]]*\]', '', text) #elimina los corchetes
     return raw
-def categoria_gramatica(text):
-    tokens = word_tokenize(text)
+def categoria_gramatica(raw):
+    tokens = word_tokenize(raw)
     tagged = nltk.pos_tag(tokens)
     return tagged
 url = 'https://es.wikipedia.org/wiki/Procesamiento_de_lenguajes_naturales' #URL de la pagina a obtener
