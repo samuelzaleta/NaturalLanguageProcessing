@@ -3,6 +3,8 @@ Parte 1
 Pida una dirección de la web y genere un archivo de texto que contenga la siguiente información:
 el texto de la página web sin etiquetas HTML, el vocabulario y su frecuencia, el número de palabras que tiene la página.
 Genere un segundo archivo de texto en donde almacene el texto de la página correctamente etiquetado con su categoría gramatical.
+'''
+
 
 import nltk
 import urllib.request
@@ -16,7 +18,7 @@ def tratamiento_html(text):
     raw = re.sub('\[[^]]*\]', '', text) #elimina los corchetes
     return raw
 def categoria_gramatica(raw):
-    tokens = word_tokenize(raw)
+    tokens = word_tokenize(raw) #forma uno de tokenizar
     tagged = nltk.pos_tag(tokens)
     return tagged
 url = 'https://es.wikipedia.org/wiki/Procesamiento_de_lenguajes_naturales' #URL de la pagina a obtener
@@ -26,7 +28,7 @@ raw = tratamiento_html(html) #hace el tratamiento de la función
 numPalabras = str(len(raw))
 
 vocabularioFrecuencia=[] #lista para agarrar el vocabulario
-tokens = [t for t in raw.split()]
+tokens = [t for t in raw.split()] #forma dos de tokenizar
 freq = nltk.FreqDist(tokens)
 for key, val in freq.items():
     vocabularioFrecuencia.append(str(key) + ':' + str(val))
@@ -46,4 +48,3 @@ archivo2 = open("archivo2-problema1.txt", "w+", encoding="utf-8")
 archivo2.write(etiquetadoGramatical)
 archivo2.close()
 
-'''
