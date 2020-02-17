@@ -4,8 +4,6 @@ Pida una dirección de la web y genere un archivo de texto que contenga la sigui
 el texto de la página web sin etiquetas HTML, el vocabulario y su frecuencia, el número de palabras que tiene la página.
 Genere un segundo archivo de texto en donde almacene el texto de la página correctamente etiquetado con su categoría gramatical.
 '''
-
-
 import nltk
 import urllib.request
 import re
