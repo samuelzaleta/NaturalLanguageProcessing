@@ -1,50 +1,25 @@
 import nltk
-import urllib.request
-import re
-from bs4 import BeautifulSoup
+from nltk.corpus import PlaintextCorpusReader
 from nltk import word_tokenize
 
-def tratamiento_html(text):
-    soup = BeautifulSoup(text, "html.parser") #elimina elm etiquetado
-    text = soup.get_text()  #obtiene el texto
-    raw = re.sub('\[[^]]*\]', '', text) #elimina los corchetes
-    return raw
-def categoria_gramatica(raw):
-    tokens = word_tokenize(raw)
-    tagged = nltk.pos_tag(tokens)
-    return tagged
-url = 'https://es.wikipedia.org/wiki/Procesamiento_de_lenguajes_naturales' #URL de la pagina a obtener
-webScrapping = urllib.request.urlopen(url) #obtine la información en bruto de la url
-html = webScrapping.read() #le da informaciión en bruto
-raw = tratamiento_html(html) #hace el tratamiento de la función
-numPalabras = str(len(raw))
+corpus_root ='/BUAP/Tareas/EstudioCLaudia/texto'
+micorpus = PlaintextCorpusReader(corpus_root, '.*')
+tokens =micorpus.words('texto1.txt')
 
-vocabularioFrecuencia=[] #lista para agarrar el vocabulario
-tokens = [t for t in raw.split()]
-freq = nltk.FreqDist(tokens)
-for key, val in freq.items():
-    vocabularioFrecuencia.append(str(key) + ':' + str(val))
-
-filterList = ", ".join(vocabularioFrecuencia) #filtra la lista
-vocabularioFrecuenciaString = str(filterList) #parsea en string
-
-archivo1 = open("archivo1-problema1.txt", "w+",encoding="utf-8")
-archivo1.write("Texto completo" + '\n'+ raw  +  '\n' +
-              'El vocabulario y su frecuencia'+ '\n' +vocabularioFrecuenciaString +'\n' +
-              'El número de palabras que tiene la página. '+'\n' + numPalabras)
-archivo1.close()
-
-
-etiquetadoGramatical = str(categoria_gramatica(raw))
-archivo2 = open("archivo2-problema1.txt", "w+", encoding="utf-8")
-archivo2.write(etiquetadoGramatical)
-archivo2.close()
-
-
-
+filteredWords = [ # Palabras filtradas es igual a la lista resultante de
+    tag_word[0] # La palabra (elemento 0 de la pareja)
+    for tag_word in nltk.pos_tag(tokens, tagset='universal') # Por cada una de las palabras etiquetadas en el corpus usando el tagset universal
+    if tag_word[1] in ['NOUN', 'VERB'] # solo sí es un verbo o un sustantivo
+]
+print(filteredWords)
 '''
-Parte 1
-Pida una dirección de la web y genere un archivo de texto que contenga la siguiente información: 
-el texto de la página web sin etiquetas HTML, el vocabulario y su frecuencia, el número de palabras que tiene la página. 
-Genere un segundo archivo de texto en donde almacene el texto de la página correctamente etiquetado con su categoría gramatical.
+>>> raw = 'I do not like green eggs and ham, I do not like them Sam I am!'
+>>> tokens = nltk.word_tokenize(raw)
+>>> default_tagger = nltk.DefaultTagger('NN')
+>>> default_tagger.tag(tokens)
+'''
+'''
+Parte 2
+Pida una dirección de un documento de texto, abralo y muestrelo. Genere un archivo de texto 
+en el que se muestren solamente los verbos y los sustantivos del documento de texto.
 '''
