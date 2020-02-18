@@ -14,7 +14,7 @@ def filtar_sustantivos_y_verbos(tokens):
         tagword[0]  # La palabra (elemento 0 de la pareja)
         for tagword in nltk.pos_tag(tokens, tagset='universal')
         # Por cada una de las palabras etiquetadas en el corpus usando el tagset universal
-        if tagword[1] in ['NOUN', 'VERB'] ] # solo sí es un verbo o un sustantivo
+        if tagword[1] in ['NOUN', 'VERB']] # solo sí es un verbo o un sustantivo
     return filteredWords
 
 verboSustan = str(filtar_sustantivos_y_verbos(tokens))
