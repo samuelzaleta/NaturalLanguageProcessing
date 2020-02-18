@@ -1,9 +1,7 @@
 from nltk.corpus import wordnet as wn
-
 print(wn.synsets('bank')) # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
 print(wn.synsets('motorcar'))
 print(wn.synsets('car'))
-
 print(len(wn.synsets('car')))
 print(wn.synset('car.n.01').lemma_names()) #sinonimos con lemman:names; synset muestra uno en siyn en particular
 print(wn.synset('car.n.02').lemma_names()) #
@@ -47,9 +45,7 @@ print(wn.synset('tree.n.01').substance_meronyms()) #
 
 print('holonimos')
 print(wn.synset('tree.n.01').member_holonyms())
-
 #Verbos
 print('verbos')
 print(wn.synset('walk.v.01').entailments()) #lo que involucra la accion
 print(wn.lemma('supply.n.02.supply').antonyms()) #antonimo sirve para verbos y sustantivos
-

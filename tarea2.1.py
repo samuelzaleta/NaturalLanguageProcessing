@@ -18,7 +18,6 @@ def filtar_sustantivos_y_verbos(tokens):
     return filteredWords
 
 verboSustan = str(filtar_sustantivos_y_verbos(tokens))
-
 archivo1= open("archivo1-problema2.txt", "w+", encoding="utf-8")
 archivo1.write(verboSustan)
 archivo1.close()
