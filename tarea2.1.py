@@ -29,3 +29,4 @@ verboSustan1 = str(filtar_sustantivos_y_verbos(tokens1))
 archivo2= open("archivo2-problema2.txt", "w+", encoding="utf-8")
 archivo2.write(verboSustan1)
 archivo2.close()
+
